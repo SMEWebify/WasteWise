@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.home-container {
+    background: linear-gradient(135deg, #528f60, #184121); /* Utilisation des couleurs du logo */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo-img {
+    max-width: 400px; /* Ajustez la taille du logo ici */
+    margin:auto;
+    padding-bottom: 50px;
+    height: auto;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    text-transform: uppercase;
+}
+
+.repo-link {
+    margin-top: 20px;
+}
+
+.footer {
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-outline-light {
+    border-color: #ffffff;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #aedbb8;
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    border-color: white;
+    color: white;
+    transition: all 0.3s ease;
+    background-color: rgb(115, 143, 115);
+}
+.btn:hover {
+    background-color: white;
+    color: #000000;
+}
+.btn-lg {
+    border-radius: 30px;
+}
+
+.github-link {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+}
+.github-link:hover {
+    color: #00ffcc;
+    border-bottom-color: #00ffcc;
+}
+
+.register-container {
+    background: linear-gradient(135deg, #28a745, #218838); /* Même fond que l'accueil */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+h1 {
+    font-weight: bold;
+}
+.form-container {
+    padding: 2rem;
+    border-radius: 1rem;
+    border-color: white;
+    border-left: 1cm;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
