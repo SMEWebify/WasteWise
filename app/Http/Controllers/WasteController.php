@@ -11,7 +11,12 @@ class WasteController extends Controller
     public function index()
     {
         // Récupérer la liste des déchets et leurs types
-        $wastes = Waste::all();
+        $wastes = Waste::with('collections')
+        ->leftjoin('waste_collections', 'wastes.id', '=', 'waste_collections.waste_id')
+        ->orderByRaw("FIELD(waste_collections.status, 'à programmer', 'programmée', 'en cours', 'terminée', 'annulée') ASC")
+        ->select('wastes.*')
+        ->get();
+
         return Inertia::render('Wastes/Index', ['wastes' => $wastes]);
     }
 
@@ -25,9 +30,10 @@ class WasteController extends Controller
         // Validation et création de nouveaux types de déchets
         $validated = $request->validate([
             'type' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'origin' => 'required|string|max:255',
             'volume' => 'required|numeric',
-            'quantity' => 'required|numeric',
+            'unit' => 'required|string|max:255',
         ]);
 
         Waste::create($validated);
@@ -46,9 +52,10 @@ class WasteController extends Controller
 
         $validated = $request->validate([
             'type' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'origin' => 'required|string|max:255',
             'volume' => 'required|numeric',
-            'quantity' => 'required|numeric',
+            'unit' => 'required|string|max:255',
         ]);
 
         $waste->update($validated);
@@ -59,6 +66,7 @@ class WasteController extends Controller
     {
         $waste = Waste::findOrFail($id);
         $waste->delete();
-        return redirect()->route('wastes.index');
+        $wastes = Waste::with('collections')->get();
+        return Inertia::render('Wastes/Index', ['wastes' => $wastes]);
     }
 }

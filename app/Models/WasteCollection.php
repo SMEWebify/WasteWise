@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Waste;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +14,8 @@ class WasteCollection extends Model
         'waste_id',
         'provider_id',
         'scheduled_date',
+        'status',
+        'collection_date',
         'collected_volume',
         'cost',
     ];
@@ -22,7 +25,7 @@ class WasteCollection extends Model
      */
     public function waste()
     {
-        return $this->belongsTo(Waste::class);
+        return $this->belongsTo(Waste::class, 'waste_id');
     }
 
     /**

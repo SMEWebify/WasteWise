@@ -13,6 +13,14 @@
     text-align: center;
 }
 
+.flow-container {
+    background: linear-gradient(135deg,#184121, #000000); 
+    min-height: 100vh;
+    display: flex;
+    text-align: center;
+}
+
+
 .logo-img {
     max-width: 400px; /* Ajustez la taille du logo ici */
     margin:auto;

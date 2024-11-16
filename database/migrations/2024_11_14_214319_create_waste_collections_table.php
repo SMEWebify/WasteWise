@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('waste_id')->constrained()->onDelete('cascade'); // Lien avec les déchets
             $table->foreignId('provider_id')->nullable()->constrained()->onDelete('set null'); // Lien avec le fournisseur
             $table->date('scheduled_date'); // Date de la collecte planifiée
-            $table->decimal('collected_volume', 10, 2); // Volume collecté
-            $table->decimal('cost', 10, 2); // Coût total de la collecte
+            $table->enum('status', allowed: ['à programmer', 'programmée', 'en cours', 'terminée', 'annulée'])->default('à programmer');
+            $table->date('collection_date')->nullable(); // Date de la collecte planifiée
+            $table->decimal('collected_volume', 10, 2)->nullable();; // Volume collecté
+            $table->decimal('cost', 10, 2)->nullable();; // Coût total de la collecte
             $table->timestamps();
         });
     }
