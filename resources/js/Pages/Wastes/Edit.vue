@@ -29,8 +29,8 @@ const submit = () => {
       </template>
 
       <div class="py-12 flow-container">
-          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <h1 class="text-2xl font-bold mb-4">Modifier le déchet</h1>
 
                 <form @submit.prevent="submit">

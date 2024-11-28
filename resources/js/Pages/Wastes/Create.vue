@@ -59,7 +59,7 @@ const submit = () => {
 
                         <div class="mb-4">
                             <label for="unit" class="block text-sm font-medium text-gray-700">Unité</label>
-                            <input v-model="form.unit" id="unit" type="number" class="mt-1 block w-full" required />
+                            <input v-model="form.unit" id="unit" type="text" class="mt-1 block w-full" required />
                             <span v-if="form.errors.unit" class="text-red-600">{{ form.errors.unit }}</span>
                         </div>
 

@@ -12,33 +12,55 @@ class RealTimeMonitoringController extends Controller
 {
     public function dashboard()
     {
-        // Récupérer les données en temps réel sur les déchets, les collectes, et les KPIs
+        // Appel de la fonction pour obtenir les données en temps réel
         $dashboardData = $this->getRealTimeData();
-        return Inertia::render('RealTime/Dashboard', ['dashboardData' => $dashboardData]);
-    }
-
-    public function alerts()
-    {
         // Récupérer les alertes automatiques
         $alerts = $this->getAlerts();
-        return Inertia::render('RealTime/Alerts', ['alerts' => $alerts]);
+
+        // Rendre la vue Inertia avec les données du tableau de bord
+        return Inertia::render('RealTime/Dashboard', [
+            'dashboardData' => $dashboardData,
+            'alerts' => $alerts
+        ]);
     }
 
     private function getRealTimeData()
     {
-        // Simule des données de production de déchets, stockage, collectes en attente et des KPI
-        $wasteData = Waste::all();  // Récupère les données de production de déchets
-        $totalWaste = round($wasteData->sum('volume'),2); // Total des déchets produits
-        $pendingCollections = $wasteData->where('status', 'à programmer')->count(); // Nombre de collectes en attente
-
-        // Exemple de données simulées pour des KPI (Key Performance Indicators)
+        // Récupère les données de production de déchets
+        $wasteData = Waste::all();
+    
+        // Total des déchets produits
+        $totalWaste = round($wasteData->sum('volume'), 2);
+    
+        // Nombre de collectes en attente
+        $pendingCollections = $wasteData->where('status', 'à programmer')->count();
+    
+        // Statistiques par type de déchets
+        $wasteByType = $wasteData->groupBy('type')->map(function ($typeGroup) {
+            return round($typeGroup->sum('volume'), 2);
+        });
+    
+        // Statistiques par catégorie de déchets
+        $wasteByCategory = $wasteData->groupBy('category')->map(function ($categoryGroup) {
+            return round($categoryGroup->sum('volume'), 2);
+        });
+    
+        // Statistiques par origine des déchets
+        $wasteByOrigin = $wasteData->groupBy('origin')->map(function ($originGroup) {
+            return round($originGroup->sum('volume'), 2);
+        });
+    
+        // Exemple de données simulées pour des KPI
         $kpi = [
             'totalWaste' => $totalWaste,
             'pendingCollections' => $pendingCollections,
             'storageCapacity' => 500, // Capacité de stockage en unités (exemple)
             'currentStorage' => $totalWaste,
+            'wasteByType' => $wasteByType,
+            'wasteByCategory' => $wasteByCategory,
+            'wasteByOrigin' => $wasteByOrigin,
         ];
-
+    
         return $kpi;
     }
 

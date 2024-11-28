@@ -68,7 +68,6 @@ class WasteCollectionController extends Controller
         // Récupérer les déchets et les fournisseurs pour les champs de sélection
         $wastes = Waste::all();
         $providers = Provider::all();
-
         return Inertia::render('WasteCollections/Edit', [
             'wasteCollection' => $wasteCollection,
             'wastes' => $wastes,

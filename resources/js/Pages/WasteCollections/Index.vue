@@ -48,7 +48,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <Link :href="route('wasteCollections.create')">Ajouter une nouvelle collecte</Link>
                 </div>
             </div>
         </div>
